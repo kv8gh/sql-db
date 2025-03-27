@@ -1,0 +1,5 @@
+# Ignore build and binary files
+/build/
+*.o
+*.exe
+*.db
