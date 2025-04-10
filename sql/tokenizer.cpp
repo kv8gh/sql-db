@@ -1,4 +1,4 @@
-#include "../include/sql/token.hpp"
+#include "./tokenizer.hpp"
 #include <cctype>
 #include <unordered_map>
 
