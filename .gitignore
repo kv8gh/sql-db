@@ -1,5 +1,33 @@
-# Ignore build and binary files
-/build/
+# Compiled object files
 *.o
-*.exe
+*.obj
+
+# Compiled executable
+minidb
+
+# Build directories
+build/
+bin/
+out/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile.cmake
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# Database files
 *.db
+
+# Temporary files
+*~
+.DS_Store
