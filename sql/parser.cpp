@@ -1,4 +1,4 @@
-#include "../include/sql/parser.hpp"
+#include "./parser.hpp"
 #include <algorithm>
 #include <iostream>
 

@@ -21,10 +21,13 @@ file(GLOB_RECURSE SOURCES
     "sql/*.cpp" 
     "storage/*.cpp" 
     "executor/*.cpp"
+    "include/*.cpp"
 )
 
 # Create executable
 add_executable(minidb ${SOURCES})
+message(STATUS "Sources found: ${SOURCES}")
+
 
 # Add compiler warnings
 if(MSVC)

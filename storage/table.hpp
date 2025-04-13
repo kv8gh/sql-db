@@ -31,13 +31,13 @@ public:
     // Select rows
     std::vector<Row> selectAll() const;
     std::vector<Row> selectWhere(const std::string& column, 
-                               const std::string& op, 
-                               const std::string& value) const;
+                            const std::string& op, 
+                            const std::string& value) const;
     
     // Delete rows
     int deleteWhere(const std::string& column, 
-                  const std::string& op, 
-                  const std::string& value);
+                const std::string& op, 
+                const std::string& value);
     
     // Save table to file
     bool saveToFile(std::ofstream& file) const;
