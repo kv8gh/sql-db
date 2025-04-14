@@ -100,9 +100,16 @@ void Tokenizer::skipWhitespace() {
     }
 }
 
+std::string trim(const std::string& str) {
+    const size_t first = str.find_first_not_of(' ');
+    if (first == std::string::npos) return "";
+    const size_t last = str.find_last_not_of(' ');
+    return str.substr(first, last - first + 1);
+}
+
+
 Token Tokenizer::scanToken() {
     // Add this at the start of the function
-    std::cout << "Scanning token at position " << current << std::endl;
     skipWhitespace();
     
     if (isAtEnd()) {
@@ -118,21 +125,17 @@ Token Tokenizer::scanToken() {
         }
         
         std::string text = source.substr(start, current - start);
-        std::string lowercase = text;
+        std::string lowercase = trim(text);
         for (char& c : lowercase) {
             c = std::tolower(c);
         }
         
-        // Check if this is a keyword
-        std:: cout<< "This is the lowercase " << lowercase<< std::endl;
         auto it = keywords.find(lowercase);
         if (it != keywords.end()) {
-            std::cout << "Found keyword: " << text << " -> TokenType: " << static_cast<int>(it->second) << std::endl;
             return Token(it->second, text, line);
         }
         
         // Not a keyword, so it's an identifier
-        std::cout << "Found identifier: " << text << std::endl;
         return Token(TokenType::IDENTIFIER, text, line);
     }
     
