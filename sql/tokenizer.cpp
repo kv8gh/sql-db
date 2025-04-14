@@ -1,6 +1,7 @@
 #include "./tokenizer.hpp"
 #include <cctype>
 #include <unordered_map>
+#include <iostream>
 
 // Keyword map
 static const std::unordered_map<std::string, TokenType> keywords = {
@@ -100,6 +101,8 @@ void Tokenizer::skipWhitespace() {
 }
 
 Token Tokenizer::scanToken() {
+    // Add this at the start of the function
+    std::cout << "Scanning token at position " << current << std::endl;
     skipWhitespace();
     
     if (isAtEnd()) {
@@ -121,12 +124,15 @@ Token Tokenizer::scanToken() {
         }
         
         // Check if this is a keyword
+        std:: cout<< "This is the lowercase " << lowercase<< std::endl;
         auto it = keywords.find(lowercase);
         if (it != keywords.end()) {
+            std::cout << "Found keyword: " << text << " -> TokenType: " << static_cast<int>(it->second) << std::endl;
             return Token(it->second, text, line);
         }
         
         // Not a keyword, so it's an identifier
+        std::cout << "Found identifier: " << text << std::endl;
         return Token(TokenType::IDENTIFIER, text, line);
     }
     
@@ -197,13 +203,37 @@ Token Tokenizer::scanToken() {
 std::string Token::toString() const {
     std::string typeStr;
     
-    // Convert token type to string (simplified)
+    // Convert token type to string (add all cases)
     switch (type) {
         case TokenType::SELECT: typeStr = "SELECT"; break;
+        case TokenType::INSERT: typeStr = "INSERT"; break;
+        case TokenType::UPDATE: typeStr = "UPDATE"; break;
+        case TokenType::DELETE: typeStr = "DELETE"; break;
+        case TokenType::CREATE: typeStr = "CREATE"; break;
+        case TokenType::DROP: typeStr = "DROP"; break;
+        case TokenType::TABLE: typeStr = "TABLE"; break;
         case TokenType::FROM: typeStr = "FROM"; break;
+        case TokenType::WHERE: typeStr = "WHERE"; break;
+        case TokenType::INTO: typeStr = "INTO"; break;
+        case TokenType::VALUES: typeStr = "VALUES"; break;
+        case TokenType::SET: typeStr = "SET"; break;
+        case TokenType::INTEGER: typeStr = "INTEGER"; break;
+        case TokenType::TEXT: typeStr = "TEXT"; break;
+        case TokenType::REAL: typeStr = "REAL"; break;
         case TokenType::IDENTIFIER: typeStr = "IDENTIFIER"; break;
         case TokenType::STRING_LITERAL: typeStr = "STRING"; break;
-        case TokenType::INTEGER_LITERAL: typeStr = "INTEGER"; break;
+        case TokenType::INTEGER_LITERAL: typeStr = "INTEGER_LIT"; break;
+        case TokenType::FLOAT_LITERAL: typeStr = "FLOAT_LIT"; break;
+        case TokenType::LEFT_PAREN: typeStr = "LEFT_PAREN"; break;
+        case TokenType::RIGHT_PAREN: typeStr = "RIGHT_PAREN"; break;
+        case TokenType::COMMA: typeStr = "COMMA"; break;
+        case TokenType::SEMICOLON: typeStr = "SEMICOLON"; break;
+        case TokenType::STAR: typeStr = "STAR"; break;
+        case TokenType::PLUS: typeStr = "PLUS"; break;
+        case TokenType::MINUS: typeStr = "MINUS"; break;
+        case TokenType::EQUALS: typeStr = "EQUALS"; break;
+        case TokenType::GREATER: typeStr = "GREATER"; break;
+        case TokenType::LESS: typeStr = "LESS"; break;
         case TokenType::EOF_TOKEN: typeStr = "EOF"; break;
         default: typeStr = "OTHER";
     }

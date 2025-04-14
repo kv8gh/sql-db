@@ -2,9 +2,15 @@
 #include <algorithm>
 #include <iostream>
 
+
 ParseResult Parser::parse(const std::string& query) {
+    std::cout << "Parsing: " << query << std::endl;
     Tokenizer tokenizer(query);
     tokens = tokenizer.scanTokens();
+    std::cout << "Tokens: " << std::endl;
+    for (const auto& t : tokens) {
+        std::cout << t.toString() << std::endl;
+    }
     current = 0;
     
     try {
@@ -44,6 +50,7 @@ bool Parser::check(TokenType type) const {
     if (isAtEnd()) {
         return false;
     }
+    std:: cout<<"outside if statement";
     return peek().type == type;
 }
 
@@ -62,7 +69,6 @@ bool Parser::consume(TokenType type, const std::string& message) {
         advance();
         return true;
     }
-    
     throw message;
 }
 

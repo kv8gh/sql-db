@@ -24,7 +24,6 @@ int main(int argc, char* argv[]) {
     while (true) {
         std::cout << "db > ";
         std::getline(std::cin, input);
-        
         // Handle meta-commands (commands that start with a dot)
         if (!input.empty() && input[0] == '.') {
             if (input == ".exit") {
