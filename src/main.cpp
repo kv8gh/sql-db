@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "../include/db_engine.hpp"
+#include "../include/string_utils.hpp"
 
 int main(int argc, char* argv[]) {
     std::cout << "Welcome to MiniDB - A Simple SQLite Clone\n";
@@ -37,6 +38,7 @@ int main(int argc, char* argv[]) {
                 continue;
             } else if (input.substr(0, 5) == ".open" && input.length() > 6) {
                 std::string filename = input.substr(6);
+                // std:: string trimmedFile = trim(filename);
                 if (!db.openDatabase(filename)) {
                     std::cerr << "Failed to open database file: " << filename << std::endl;
                 }

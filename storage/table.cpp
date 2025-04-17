@@ -1,4 +1,5 @@
 #include "./table.hpp"
+#include "../include/string_utils.hpp"
 #include <iostream>
 #include <algorithm>
 #include <sstream>
@@ -224,8 +225,9 @@ std::unique_ptr<Table> Table::loadFromFile(std::ifstream& file) {
 }
 
 int Table::findColumnIndex(const std::string& columnName) const {
+    std::string trimmed = trim(columnName);
     for (size_t i = 0; i < columns.size(); i++) {
-        if (columns[i].name == columnName) {
+        if (trim(columns[i].name) == trimmed) {
             return static_cast<int>(i);
         }
     }

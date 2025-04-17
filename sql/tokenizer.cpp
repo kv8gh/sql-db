@@ -1,4 +1,5 @@
 #include "./tokenizer.hpp"
+#include "../include/string_utils.hpp"
 #include <cctype>
 #include <unordered_map>
 #include <iostream>
@@ -100,13 +101,6 @@ void Tokenizer::skipWhitespace() {
     }
 }
 
-std::string trim(const std::string& str) {
-    const size_t first = str.find_first_not_of(' ');
-    if (first == std::string::npos) return "";
-    const size_t last = str.find_last_not_of(' ');
-    return str.substr(first, last - first + 1);
-}
-
 
 Token Tokenizer::scanToken() {
     // Add this at the start of the function
@@ -125,10 +119,7 @@ Token Tokenizer::scanToken() {
         }
         
         std::string text = source.substr(start, current - start);
-        std::string lowercase = trim(text);
-        for (char& c : lowercase) {
-            c = std::tolower(c);
-        }
+        std::string lowercase = toLower(trim(text));
         
         auto it = keywords.find(lowercase);
         if (it != keywords.end()) {
