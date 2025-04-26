@@ -34,6 +34,8 @@ if(MSVC)
     target_compile_options(minidb PRIVATE /W4)
 else()
     target_compile_options(minidb PRIVATE -Wall -Wextra -Wpedantic)
+
+    target_link_options(minidb PRIVATE -static -static-libgcc -static-libstdc++)
 endif()
 
 # Generate compile_commands.json for better IDE integration
