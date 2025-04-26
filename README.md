@@ -1,12 +1,21 @@
-## Setting Up the Project on Windows
+# MiniDB
 
-To set up the configuration for Visual Studio Code, follow these steps:
+MiniDB is a simple SQL-style database engine written in modern C++.
 
-1. Open PowerShell in the project folder.
-2. Run the setup script:
-bash
-.\setup.ps1
-3. The configuration file will be automatically created in the `.vscode` folder.
+## 🚀 How to Run
 
-### Note
-Make sure you have GCC or G++ installed on your system and accessible through the `PATH` environment variable.
+1. Download the latest `.exe` from the [Releases](https://github.com/kv8gh/sql-db/releases) page.
+2. Run it from your terminal: minidb.exe
+3. Start using SQL-like commands:
+
+## 🧪 Sample Preloaded Table
+- Table: `users`
+- Columns: `id`, `name`, `age`
+- Contains 4 rows
+
+## 📦 Export CSV
+You can use built-in CSV exporter to generate `users.csv`
+
+---
+
+Want to contribute? Pull requests welcome!
